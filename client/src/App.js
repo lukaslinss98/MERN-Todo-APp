@@ -3,11 +3,10 @@ import './App.css';
 
 function App() {
 
-const [todos, setTodos] = useState([])
-console.log("Todo State", todos)
+const [todos, setTodos] = useState({})
 
 useEffect(() => {
-  fetch('https://jsonplaceholder.typicode.com/todos')
+  fetch('http://localhost:5000/api')
   .then(
     data => data.json()
     )
@@ -20,9 +19,9 @@ useEffect(() => {
     <div className="App">
      <h1>Your Todos</h1>
      <ul>
-      {(typeof todos === 'undefined') ? (<p>Loading...</p>) : 
-      (todos.map((todo, index) => {
-          return <li key={index}>{todo.title}</li>
+      {(typeof todos.items === 'undefined') ? (<p>Loading...</p>) : 
+      (todos.items.map((todo, index) => {
+          return <li className='list' key={index}>{todo}</li>
         })
       )}
      </ul>
